@@ -23,7 +23,7 @@ jobs:
 
       - name: Run DVC Pipeline
         env:  # for git actions, token based authentication
-          DAGSHUB_TOKEN:${{secrets.CI_MLOPS}}
+          DAGSHUB_TOKEN: ${{secrets.CI_MLOPS}}
         run: |
           # Directly run DVC pipeline without pulling
           dvc repro
