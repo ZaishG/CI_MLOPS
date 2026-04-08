@@ -17,7 +17,6 @@ from mlflow.models import infer_signature
 # Initialize DagsHub for experiment tracking
 dagshub.init(repo_owner='ZaishG', repo_name='CI_MLOPS', mlflow=True)
 
-# Set the experiment name in MLflow
 
 mlflow.set_experiment("CI_MLOPS")
 
