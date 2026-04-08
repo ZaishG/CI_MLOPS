@@ -1,6 +1,10 @@
 name: CI demo
 
-on: push
+on:    #push
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   lint:

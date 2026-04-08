@@ -4,8 +4,13 @@ import os
 # from sklearn.model_selection import train_test_split
 # import yaml
 
-data = pd.read_csv("../../data/raw/water_potability.csv")
 
+# data = pd.read_csv("../../data/raw/water_potability.csv")
+data_path = "../../data/raw/water_potability.csv"
+def load_data(data_path):
+    return pd.read_csv(data_path)
+
+data = load_data(data_path)
 # train_data, test_data = train_test_split(data,
 #                                       test_szie=0.2,
 #                                        random_state=42)
