@@ -41,6 +41,7 @@ dataclasses-json==0.6.7
 dictdiffer==0.9.0
 diskcache==5.6.3
 distro==1.9.0
+dnspython==2.8.0
 docker==7.1.0
 dpath==2.2.0
 dulwich==1.1.0
@@ -51,9 +52,13 @@ dvc-objects==5.2.0
 dvc-render==1.0.2
 dvc-studio-client==0.22.0
 dvc-task==0.40.2
+email-validator==2.3.0
 entrypoints==0.4
 exceptiongroup==1.3.1
 fastapi==0.135.3
+fastapi-cli==0.0.24
+fastapi-cloud-cli==0.16.1
+fastar==0.10.0
 filelock==3.25.2
 flake8==7.3.0
 Flask==3.1.3
@@ -76,6 +81,7 @@ greenlet==3.3.2
 gto==1.9.0
 h11==0.16.0
 httpcore==1.0.9
+httptools==0.7.1
 httpx==0.28.1
 huey==2.6.0
 hydra-core==1.3.2
@@ -126,6 +132,7 @@ pyasn1_modules==0.4.2
 pycodestyle==2.14.0
 pycparser==3.0
 pydantic==2.12.5
+pydantic-extra-types==2.11.2
 pydantic-settings==2.13.1
 pydantic_core==2.41.5
 pydot==4.0.1
@@ -136,11 +143,15 @@ pygtrie==2.5.0
 pyparsing==3.3.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
+python-multipart==0.0.24
 pytz==2026.1.post1
+pywin32==311
 PyYAML==6.0.3
 requests==2.33.1
 requests-toolbelt==1.0.0
 rich==14.3.3
+rich-toolkit==0.19.7
+rignore==0.7.6
 ruamel.yaml==0.19.1
 s3transfer==0.16.0
 scikit-learn==1.7.2
@@ -148,6 +159,7 @@ scipy==1.15.3
 scmrepo==3.6.2
 seaborn==0.13.2
 semver==3.0.4
+sentry-sdk==2.57.0
 shellingham==1.5.4
 shortuuid==1.0.13
 shtab==1.8.0
@@ -176,7 +188,9 @@ uvicorn==0.43.0
 vine==5.1.0
 voluptuous==0.16.0
 waitress==3.0.2
+watchfiles==1.1.1
 wcwidth==0.6.0
+websockets==16.0
 Werkzeug==3.1.8
 yarl==1.23.0
 zc.lockfile==4.0

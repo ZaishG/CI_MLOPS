@@ -27,27 +27,27 @@ def promote_model_to_prod():
     """Promote model to prod as Champion"""
     client = MlflowClient()
 
-    # Get Champion and set them previous champion
-    champion_mv = client.get_model_version_by_alias(
-        name=model_name,
-        alias=champion
-    )
+    try:
+        # Get Champion and set them previous champion
+        champion_mv = client.get_model_version_by_alias(
+            name=model_name,
+            alias=champion
+        )
 
-    if not champion_mv:
-        print("No champions currently...")
-    else:
         client.set_registered_model_alias(
             name=model_name,
             version=champion_mv.version,
             alias=previous_champion
         )
+    except Exception:
+            print("No champions currently...")
 
-    candidate_mv = client.get_model_version_by_alias(
-        name=model_name,
-        alias=current_candidate
-    )
-
-    if not candidate_mv:
+    try:
+        candidate_mv = client.get_model_version_by_alias(
+            name=model_name,
+            alias=current_candidate
+        )
+    except Exception:
         print("No condidates to promote...")
         return
 
@@ -55,6 +55,11 @@ def promote_model_to_prod():
         name=model_name,
         version=candidate_mv.version,
         alias=champion
+    )
+    # Remove candidate alias so same version does not keep both aliases
+    client.delete_registered_model_alias(
+        name=model_name,
+        alias=current_candidate,
     )
 
     client.set_model_version_tag(
