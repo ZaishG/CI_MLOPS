@@ -33,7 +33,6 @@ jobs:
             DAGSHUB_TOKEN: ${{secrets.CI_MLOPS}}
         run: |
           python -m unittest tests/model_test.py
-
       - name: Promote model to prod
           if: success()
           env: # for git actions, token based authentication
