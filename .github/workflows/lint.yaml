@@ -1,4 +1,4 @@
-name: CI demo
+name: CI Pipeline
 
 on:    #push
   push:
