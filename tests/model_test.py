@@ -27,26 +27,15 @@ model_name = "Best Model"
 
 class TestModelLoading(unittest.TestCase):
     "Load model"
-
-    def test_model_exists(self):
-        '''Check if model exits'''
+    def test_model_performance(self):
+        """ Test model performance"""
         client = MlflowClient()
-        mv = client.get_model_version_by_alias(
-            name=model_name,
-            alias="candidate"
-        )
-        self.assertGreater(len(mv), 0, "No models exists there")
-
-    def test_model_loading(self):
-        """Test if model can be loaded"""
-        client = MlflowClient()
-
         mv = client.get_model_version_by_alias(
             name=model_name,
             alias="candidate"
         )
         if not mv:
-            self.fail("No model with alias candidate")
+            self.fail("No model as candidate, skip model performance")
 
         model_uri = f"models:/{model_name}@candidate"
         try:
@@ -57,6 +46,32 @@ class TestModelLoading(unittest.TestCase):
 
         self.assertIsNotNone(loaded_model, "The loaded model is None")
         print(f"Model loaded successfully from {loaded_model}")
+
+        test_data_path = "./data/processed/test_processed.csv"
+        if not os.path.exists(test_data_path):
+            self.fail("Test data not found")
+
+        test_data = pd.read_csv(test_data_path)
+        X_test = test_data.drop(columns=["Potability"])
+        y_test = test_data["Potability"]
+
+        pred = loaded_model.predict(X_test)
+
+        acc = accuracy_score(y_test, pred)
+        pre = precision_score(y_test, pred, average="binary")
+        recall = recall_score(y_test, pred, average="binary")
+        f1score = f1_score(y_test, pred, average="binary")
+
+        print(f"Accuracy : {acc}")
+        print(f"Precision : {pre}")
+        print(f"Recall : {recall}")
+        print(f"F1_score : {f1score}")
+
+        self.assertGreaterEqual(acc, 0.3, "Accuracy is below threshold")
+        self.assertGreaterEqual(pre, 0.3, "Precision is below threshold")
+        self.assertGreaterEqual(recall, 0.3, "Recall is below threshold")
+        self.assertGreaterEqual(f1score, 0.3, "F1_score is below threshold")
+
 
 if __name__ == "__main__":
     unittest.main()
