@@ -7,8 +7,11 @@ import os
 
 # data = pd.read_csv("../../data/raw/water_potability.csv")
 data_path = "../../data/raw/water_potability.csv"
+
+
 def load_data(data_path):
     return pd.read_csv(data_path)
+
 
 data = load_data(data_path)
 # train_data, test_data = train_test_split(data,
