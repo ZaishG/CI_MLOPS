@@ -15,6 +15,7 @@ class TestLoadData(unittest.TestCase):
         })
         self.df.to_csv(self.test_file, index=False)
 
+
     def tearDown(self):
         # Remove the temporary file after test
         if os.path.exists(self.test_file):
