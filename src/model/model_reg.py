@@ -1,9 +1,22 @@
+import os
 import json
 from mlflow.tracking import MlflowClient
 import mlflow
 
 import dagshub
-dagshub.init(repo_owner='ZaishG', repo_name='CI_MLOPS', mlflow=True)
+# dagshub.init(repo_owner='ZaishG', repo_name='CI_MLOPS', mlflow=True)
+# Token based Authentication
+dagshub_token = os.getenv("DAGSHUB_TOKEN")
+if not dagshub_token:
+    raise EnvironmentError("DAGSHUB_TOKEN environment is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "ZaishG"
+repo_name= "CI_MLOPS"
+mlflow.set_tracking_uri(f"{dagshub_url}/{repo_owner}/{repo_name}.mlflow")
 
 
 # Set the experiment name in MLflow

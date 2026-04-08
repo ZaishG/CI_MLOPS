@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import pandas as pd
 import pickle
@@ -15,8 +17,21 @@ from mlflow.models import infer_signature
 
 # Initialize DagsHub for experiment tracking
 # Initialize DagsHub for experiment tracking
-dagshub.init(repo_owner='ZaishG', repo_name='CI_MLOPS', mlflow=True)
+## Web based authentication
+# dagshub.init(repo_owner='ZaishG', repo_name='CI_MLOPS', mlflow=True)
 
+# Token based Authentication
+dagshub_token = os.getenv("DAGSHUB_TOKEN")
+if not dagshub_token:
+    raise EnvironmentError("DAGSHUB_TOKEN environment is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "ZaishG"
+repo_name= "CI_MLOPS"
+mlflow.set_tracking_uri(f"{dagshub_url}/{repo_owner}/{repo_name}.mlflow")
 
 mlflow.set_experiment("CI_MLOPS")
 
