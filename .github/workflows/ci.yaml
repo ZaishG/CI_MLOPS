@@ -29,8 +29,7 @@ jobs:
           dvc repro
 
       - name: run model tests
-        env:
-          env: # for git actions, token based authentication
+        env: # for git actions, token based authentication
             DAGSHUB_TOKEN: ${{secrets.CI_MLOPS}}
         run: |
               python -m unittest tests/model_test.py
