@@ -46,11 +46,25 @@ reg = mlflow.register_model(model_uri, model_name)
 model_version = reg.version  # Get the registered model version
 
 # Transition the model version to Staging
-stage_alias = "champion"
+stage_alias = "candidate"
 client.set_registered_model_alias(
     name=model_name,
     alias=stage_alias,
     version=model_version
+)
+
+client.set_model_version_tag(
+    name=model_name,
+    version=model_version,
+    key="validation_status",
+    value="pending"
+)
+
+client.set_model_version_tag(
+    name=model_name,
+    version=model_version,
+    key="qa_status",
+    value="pending"
 )
 #
 # client.transition_model_version_stage(
