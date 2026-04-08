@@ -6,7 +6,9 @@ import os
 
 data = pd.read_csv("../../data/raw/water_potability.csv")
 
-# train_data, test_data = train_test_split(data, test_szie=0.2, random_state=42)
+# train_data, test_data = train_test_split(data,
+#                                       test_szie=0.2,
+#                                        random_state=42)
 
 data_path = os.path.join("data", "raw")
 
