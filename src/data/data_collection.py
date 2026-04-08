@@ -6,7 +6,7 @@ import os
 
 
 # data = pd.read_csv("../../data/raw/water_potability.csv")
-data_path = "./data/raw/water_potability.csv"
+data_path = "data/raw/water_potability.csv"
 
 
 def load_data(data_path):
